@@ -1,0 +1,52 @@
+cart = []
+total_amount = 0
+
+menu = {
+    "Pizza": 10,
+    "Burger": 5,
+    "Fries": 3,
+    "Drink": 2
+}
+
+while True:
+    print("Menu:")
+    for item, price in menu.items():
+        print(f"{item}: ${price}")
+    
+    choice = input("Enter item to add to cart (or 'done' to finish): ")
+    if choice.lower() == 'done':
+        break
+    elif choice in menu:
+        cart.append(choice)
+        total_amount += menu[choice]
+        print(f"{choice} added to cart.")
+    else:
+        print("Invalid item.")
+
+if total_amount > 100:
+    discount = total_amount * 0.15
+    total_amount -= discount
+    print("Congratulations! You got a 15% discount.")
+elif total_amount > 50:
+    discount = total_amount * 0.10
+    total_amount -= discount
+    print("Congratulations! You got a 10% discount.")
+
+delivery_address = input("Enter delivery address: ")
+delivery_radius = ["Downtown", "Midtown", "Uptown"]
+
+if delivery_address in delivery_radius:
+    print("Delivery address validated. Delivery is available.")
+else:
+    print("Sorry, delivery is not available to this address. You can opt for pickup.")
+
+current_order_volume = len(cart)
+if current_order_volume > 5:
+    print("Due to high order volume, delivery may take longer than usual.")
+else:
+    print("Delivery will be on time.")
+
+print("Order Summary:")
+for item in cart:
+    print(item)
+print("Total amount: $", total_amount)
